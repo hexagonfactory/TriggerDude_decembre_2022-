@@ -182,7 +182,7 @@ void catch_PatternBank_OnOff() {
           reset_display_Screen();
       }
     }
-    
+
     reset_modes_on_screenChange(/*2*/);
   }
 }

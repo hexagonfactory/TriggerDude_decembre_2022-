@@ -95,7 +95,7 @@ void makeDACplayNotes_from_Sequences() {
                 if (DaC[dac].currentPitch <= (DaC[dac].endPitch - DaC[dac].incrementValue)) {
                   //if (micros() - DaC[dac].glide_trig_micros < DaC[dac].glide_duration_micros) {
                   DaC[dac].currentPitch += DaC[dac].incrementValue;
-                  
+
                 }
                 else {
                   DaC[dac].currentPitch = DaC[dac].endPitch;
@@ -122,7 +122,6 @@ void makeDACplayNotes_from_Sequences() {
 
       else {
         byte lfoNum = (track == 14);  // lfNum = 1 si 14, 0 si 13;
-        byte lfoWAVE = (lfoNum == 0) ? get_LFO_wave_Display(0) : get_LFO_wave_Display(1);
         int lfoPointer = LFO[lfoNum].counter + bank[currentBank].pattern[currentPattern].lfo_phase[lfoNum];
 
         if (lfoPointer >= LFO_WAVE_RESOLUTION)
@@ -131,7 +130,7 @@ void makeDACplayNotes_from_Sequences() {
         else if (lfoPointer < 0)
           lfoPointer += LFO_WAVE_RESOLUTION; // lfoPointer = LFO_WAVE_RESOLUTION - (-lfoPointer);
 
-        switch (lfoWAVE) {
+        switch (get_LFO_wave_Display(lfoNum)) {
           case 0 : // Ramp Up
             pitchOut = rampUp[lfoPointer];
             break;
